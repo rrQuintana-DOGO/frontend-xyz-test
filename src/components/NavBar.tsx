@@ -1,4 +1,3 @@
-import React from 'react'
 import SearchAppBar from './SearchAppBar'
 import DrawerNavigator from './DrawerNavigator';
 

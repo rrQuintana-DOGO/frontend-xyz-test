@@ -1,4 +1,4 @@
-const HomeContainter = ({ children }) => {
+const HomeContainter = ({ children }: { children: React.ReactNode }) => {
   return (
     <div>{children}</div>
   )

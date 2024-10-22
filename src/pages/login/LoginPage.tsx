@@ -23,7 +23,7 @@ const LoginPage: React.FC = () => {
   };
 
   const loginWithGoogle = useGoogleLogin({
-    onSuccess: tokenResponse => {
+    onSuccess: () => {
       navigate('/viajes');
     },
   });

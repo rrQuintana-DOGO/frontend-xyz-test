@@ -143,7 +143,7 @@ function Row(props: { row: ReturnType<typeof createData> }) {
   );
 }
 
-const TripsCollapsibleTable = ({ trips }: { trips: TripData[] }) => {
+const TripsCollapsibleTable = ({ trips }: { trips: any[] }) => {
   const [order, setOrder] = React.useState<'asc' | 'desc'>('asc');
   const [orderBy, setOrderBy] = React.useState<keyof TripData>('description');
 

@@ -1,8 +1,6 @@
-import React from 'react'
 
-type Props = {}
 
-const InfoInput = (props: Props) => {
+const InfoInput = () => {
   return (
     <div>InfoInput</div>
   )

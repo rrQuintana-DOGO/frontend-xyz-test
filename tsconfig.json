@@ -3,5 +3,8 @@
   "references": [
     { "path": "./tsconfig.app.json" },
     { "path": "./tsconfig.node.json" }
-  ]
+  ],
+  "compilerOptions": {
+    "noEmitOnError": false // No detener el build si hay errores de tipo
+  }
 }

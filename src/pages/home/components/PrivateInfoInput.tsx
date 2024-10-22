@@ -1,8 +1,6 @@
-import React from 'react'
 
-type Props = {}
 
-const PrivateInfoInput = (props: Props) => {
+const PrivateInfoInput = () => {
   return (
     <div>PrivateInfoInput</div>
   )
