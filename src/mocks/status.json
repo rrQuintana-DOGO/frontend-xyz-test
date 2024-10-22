@@ -1,0 +1,59 @@
+{
+  "data": [
+      {
+          "id_status": "1a5dcfef-c195-4a3c-9b5b-c103ff064f4f",
+          "name": "Activo",
+          "status": true
+      },
+      {
+          "id_status": "35a5b38d-a1f8-4440-974c-c90d8994ac5e",
+          "name": "Pendiente",
+          "status": true
+      },
+      {
+          "id_status": "43d48d4e-4ec5-4b8a-9bc1-56fee881759c",
+          "name": "Finalizado",
+          "status": true
+      },
+      {
+          "id_status": "6da4572d-26a8-48c7-a192-cd0e049b47cd",
+          "name": "En espera",
+          "status": true
+      },
+      {
+          "id_status": "7b041d8e-5699-4c7f-917a-5a3844ca09cf",
+          "name": "Aceptado",
+          "status": true
+      },
+      {
+          "id_status": "7e970c56-28ed-411e-a0a7-7d2e6c221134",
+          "name": "Rechazado",
+          "status": true
+      },
+      {
+          "id_status": "c33bf3c5-4c97-40ef-94f4-ff1f9332abff",
+          "name": "En revisión",
+          "status": true
+      },
+      {
+          "id_status": "c69c391f-9d20-40b5-a30c-b82b4597253f",
+          "name": "Inactivo",
+          "status": true
+      },
+      {
+          "id_status": "ef55adcd-1c3e-47ae-9fb6-7e766006473b",
+          "name": "En proceso",
+          "status": true
+      },
+      {
+          "id_status": "f02a3d85-61fc-42e3-9d75-67ec84a7697f",
+          "name": "Cancelado",
+          "status": true
+      }
+  ],
+  "meta": {
+      "total_records": 10,
+      "current_page": 1,
+      "total_pages": 1
+  }
+}
