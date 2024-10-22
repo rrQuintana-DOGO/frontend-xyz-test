@@ -51,7 +51,7 @@ const CustomAccordion: React.FC<CustomAccordionProps> = ({ defaultOpen = false, 
   const [expanded, setExpanded] = React.useState<string | false>(defaultOpen ? 'panel1' : false);
 
   const handleChange =
-    (panel: string) => (event: React.SyntheticEvent, newExpanded: boolean) => {
+    (panel: string) => (_event: React.SyntheticEvent, newExpanded: boolean) => {
       setExpanded(newExpanded ? panel : false);
     };
 

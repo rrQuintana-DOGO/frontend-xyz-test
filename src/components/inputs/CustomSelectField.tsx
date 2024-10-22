@@ -1,13 +1,13 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React from 'react';
-import { InputLabel, MenuItem, Select, FormHelperText, FormControl } from '@mui/material';
+import { InputLabel, MenuItem, Select, FormHelperText, FormControl, SelectChangeEvent } from '@mui/material';
 
 interface CustomSelectFieldProps {
   label: string;
   name: string;
   value: string;
   options: { value: string | number; label: string }[];
-  onChange: (e: React.ChangeEvent<{ name?: string; value: unknown }>) => void;
+  onChange: (e: SelectChangeEvent<string>) => void;
   onBlur?: (e: React.FocusEvent<any>) => void;
   error?: string;
   touched?: boolean;
