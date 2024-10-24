@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 export const CustomButton = ({
   color = 'primary',
   variant = 'solid',
@@ -5,13 +6,17 @@ export const CustomButton = ({
   icon,
   label,
   onClick,
+  className = '',
+  selected = false,
 }: {
   color?: 'primary' | 'secondary' | 'success' | 'danger' | 'warning';
   variant?: 'solid' | 'outline' | 'ghost';
   size?: 'sm' | 'md' | 'lg';
   icon?: string;
   label: string;
-  onClick: () => void;
+  onClick: (...args: any[]) => void;
+  className?: string;
+  selected?: boolean;
 }) => {
   const colorClasses = {
     primary: 'bg-blue-500 border-blue-500 text-blue-500',
@@ -33,14 +38,14 @@ export const CustomButton = ({
     lg: 'text-lg py-3 px-6',
   }[size];
 
-  const baseClasses = 'rounded flex items-center justify-center space-x-2';
+  const baseClasses = 'flex items-center justify-center space-x-2';
 
-  const buttonClasses = `${baseClasses} ${sizeClasses} ${variantClasses}`;
+  const buttonClasses = `${baseClasses} ${sizeClasses} ${variantClasses} ${className ? className : 'rounded'}`;
 
   return (
     <button onClick={onClick} className={buttonClasses}>
       {icon && <i className={icon}></i>}
-      <span>{label}</span>
+      <span className={`${selected ? 'font-semibold' : 'font-light'}`}>{label}</span>
     </button>
   );
 };

@@ -1,10 +1,9 @@
 import React from 'react';
-import Title from '../../../components/Title';
+import Title from '../../../../components/Title';
 import { Box, Tab, Tabs } from '@mui/material';
-import CustomTabPanel from '../../../components/CustomTabPanel';
-import CustomAccordion from '../../../components/CustomAccordion';
-import CustomInput from '../../../components/inputs/CustomInput';
-import { showNotification } from '../../../components/Notification';
+import CustomTabPanel from '../../../../components/CustomTabPanel';
+import CustomAccordion from '../../../../components/CustomAccordion';
+import CustomInput from '../../../../components/inputs/CustomInput';
 
 const NewTripModal = () => {
   const [value, setValue] = React.useState(0);
@@ -187,11 +186,6 @@ const NewTripModal = () => {
                     size='sm'
                   />
                 </div>
-                <button
-                onClick={() => showNotification('Pureba', 'Esto es una prueba', 'error')}
-                >
-                  Prueba
-                </button>
               </div>
             }
           />

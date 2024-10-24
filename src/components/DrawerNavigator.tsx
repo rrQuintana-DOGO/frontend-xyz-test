@@ -6,9 +6,12 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { logout } from '../redux/slices/authSlice';
 
 export default function DrawerNavigator({ open, toggleDrawer }: { open: boolean; toggleDrawer: () => void }) {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const routes = [
     {
@@ -26,6 +29,9 @@ export default function DrawerNavigator({ open, toggleDrawer }: { open: boolean;
     {
       name: 'Cerrar sesión',
       link: '/',
+      action: () => {
+        dispatch(logout());
+      }
     },
   ];
 
@@ -36,7 +42,10 @@ export default function DrawerNavigator({ open, toggleDrawer }: { open: boolean;
         {routes.map((route, index) => (
           <div key={route.name}>
             <ListItem disablePadding>
-              <ListItemButton onClick={() => navigate(route.link)}>
+              <ListItemButton onClick={() => {
+                navigate(route.link);
+                if (route.action) route.action();
+              }}>
                 <ListItemText primary={route.name} primaryTypographyProps={{ variant: 'body2' }} />
               </ListItemButton>
             </ListItem>

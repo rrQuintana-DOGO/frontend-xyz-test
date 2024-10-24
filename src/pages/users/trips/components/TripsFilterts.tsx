@@ -1,11 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Fade, Popper } from "@mui/material";
 import React, { useEffect } from "react";
-import CustomSelectField from "../../../components/inputs/CustomSelectField";
+import CustomSelectField from "../../../../components/inputs/CustomSelectField";
 import { useFormik } from "formik";
-import { CustomButton } from "../../../components/inputs/CustomButton";
-import Title from "../../../components/Title";
-import useGetAllStatus from "../../../logic/hooks/status/useGetAllStatus";
+import { CustomButton } from "../../../../components/inputs/CustomButton";
+import Title from "../../../../components/Title";
+import useGetAllStatus from "../../../../logic/hooks/status/useGetAllStatus";
 
 const TripsFilters = () => {
   const { data: statusData, isLoading: statusLoading, error: statusError } = useGetAllStatus({ limit: 100, page: 1 });
@@ -52,7 +52,6 @@ const TripsFilters = () => {
           name="search"
           value={formik.values.search}
           onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
           className="bg-transparent w-full text-black focus:outline-none text-sm"
           placeholder='Buscar'
         />
@@ -87,7 +86,6 @@ const TripsFilters = () => {
                         label="Estatus"
                         value={formik.values.status}
                         onChange={formik.handleChange}
-                        onBlur={formik.handleBlur}
                         error={formik.errors.status}
                         touched={formik.touched.status}
                         options={statusList}

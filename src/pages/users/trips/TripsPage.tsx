@@ -1,17 +1,17 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Box, Tab, Tabs } from "@mui/material";
-import CustomBreadcrumbs from "../../components/CustomBreadcrumbs";
-import Layout from "../../containers/Layout";
-import CustomTabPanel from "../../components/CustomTabPanel";
 import { useState } from "react";
-import Title from "../../components/Title";
-import useGetAllTrips from "../../logic/hooks/trips/useGetAllTrips";
-import CustomTablePagination from "../../components/CustomTablePagination";
 import TripsCollapsibleTable from "./components/TripsCollapsibleTable";
 import TripsFilterts from "./components/TripsFilterts";
-import { CustomButton } from "../../components/inputs/CustomButton";
-import CustomModal from "../../components/CustomModal";
 import NewTripModal from "./components/NewTripModal";
+import useGetAllTrips from "../../../logic/hooks/trips/useGetAllTrips";
+import CustomBreadcrumbs from "../../../components/CustomBreadcrumbs";
+import { CustomButton } from "../../../components/inputs/CustomButton";
+import Layout from "../../../containers/Layout";
+import CustomTabPanel from "../../../components/CustomTabPanel";
+import CustomModal from "../../../components/CustomModal";
+import CustomPagination from "../../../components/CustomTablePagination";
+import Title from "../../../components/Title";
 
 const TripsPage = () => {
   const [params, setParams] = useState({ page: 1, limit: 10, tab: 'ALL' });
@@ -50,11 +50,11 @@ const TripsPage = () => {
           </Tabs>
         </Box>
         <CustomTabPanel value={0} index={0}>
-          {trips && trips?.data && trips?.data.length && (params.tab !== 'TNS') && !error && (
+          {trips && trips?.data && trips?.data.length && !error && (
             <>
               <TripsFilterts />
               <TripsCollapsibleTable trips={trips.data} />
-              <CustomTablePagination
+              <CustomPagination
                 count={trips.meta.total_pages}
                 page={params.page}
                 rowsPerPage={params.limit}
@@ -63,7 +63,7 @@ const TripsPage = () => {
               />
             </>
           )}
-          {(params.tab === 'TNS') && <p>{error?.message === 'timeout of 5000ms exceeded' ? 'Error de conexión' : 'Error al cargar los viajes'}</p>}
+          {error && <p>{error.message === 'timeout of 5000ms exceeded' ? 'Error de conexión' : 'Error al cargar los viajes'}</p>}
           {!trips && !error && <p>No hay viajes disponibles.</p>}
         </CustomTabPanel>
       </Box>

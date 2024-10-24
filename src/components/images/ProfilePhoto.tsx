@@ -1,5 +1,3 @@
-
-
 const ProfilePhoto = () => {
   return (
     <div>ProfilePhoto</div>

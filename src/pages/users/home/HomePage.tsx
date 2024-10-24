@@ -1,4 +1,4 @@
-import HomeContainter from "../../containers/HomeContainter"
+import HomeContainter from "../../../containers/HomeContainter"
 import InfoInput from "./components/InfoInput"
 import PrivateInfoInput from "./components/PrivateInfoInput"
 import ProfileImage from "./components/ProfileImage"

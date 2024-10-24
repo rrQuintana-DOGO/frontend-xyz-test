@@ -8,7 +8,7 @@ import { CustomButton } from '../../components/inputs/CustomButton';
 import CustomInput from '../../components/inputs/CustomInput';
 import Title from '../../components/Title';
 import GoogleLogo from '../../assets/images/google_logo.png';
-import MicrosoftLogo from '../../assets/images/Microsoft_logo.png';
+import MicrosoftLogo from '../../assets/images/microsoft_logo.png';
 import loginValidationSchema from '../../utils/validations/loginValidation.schema';
 import { useGoogleLogin } from '@react-oauth/google';
 
@@ -17,9 +17,13 @@ const LoginPage: React.FC = () => {
   const dispatch = useDispatch();
 
   const handleLogin = (values: { username: string; password: string }) => {
-    console.log(values);
     dispatch(login(values));
-    navigate('/viajes');
+
+    if(values.username === 'admin') {
+      navigate('/admin/');
+    } else {
+      navigate('/xyz/');
+    }
   };
 
   const loginWithGoogle = useGoogleLogin({

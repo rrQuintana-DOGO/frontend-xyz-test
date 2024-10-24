@@ -16,8 +16,8 @@ import { visuallyHidden } from '@mui/utils';
 import { Collapse } from '@mui/material';
 import moment from 'moment';
 import GetStatusLabel from './GetStatusLabel';
-import { TripData } from '../../../utils/interfaces/TripInterface';
 import GetEtaStatus from './GetEtaStatus';
+import { TripData } from '../../../../utils/interfaces/TripInterface';
 
 function createData(trip: TripData) {
   return {
@@ -81,7 +81,6 @@ function EnhancedTableHead(props: { order: 'asc' | 'desc'; orderBy: any; onReque
       <TableRow sx={{ '& > *': { paddingBlock: '4px' } }}>
         {headCells.map((headCell) => (
           <TableCell
-          key={headCell.id}
           align={headCell.numeric ? 'right' : 'left'}
           sortDirection={orderBy === headCell.id ? order : false}
         >
@@ -143,7 +142,7 @@ function Row(props: { row: ReturnType<typeof createData> }) {
   );
 }
 
-const TripsCollapsibleTable = ({ trips }: { trips: any[] }) => {
+const TripsCollapsibleTable = ({ trips }: { trips: TripData[] }) => {
   const [order, setOrder] = React.useState<'asc' | 'desc'>('asc');
   const [orderBy, setOrderBy] = React.useState<keyof TripData>('description');
 

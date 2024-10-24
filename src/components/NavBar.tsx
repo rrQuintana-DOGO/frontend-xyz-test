@@ -1,9 +1,9 @@
+import React from 'react'
 import SearchAppBar from './SearchAppBar'
 import DrawerNavigator from './DrawerNavigator';
-import { useState } from 'react';
 
 const NavBar = () => {
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = React.useState(false);
 
   const toggleDrawer = (newOpen: boolean) => () => {
     setOpen(newOpen);

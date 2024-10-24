@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useQuery } from '@tanstack/react-query';
-import status from '../../../mocks/status.json';
+import statusService from '../../services/status.service';
 
 interface StatusQuery {
   [key: string]: any;
@@ -10,7 +10,7 @@ const useGetAllStatus = (query: StatusQuery) => {
   return useQuery({
     queryKey: ['status', query],
     queryFn: async () => {
-      const data = status;
+      const data = await statusService.getStatus(query);
       return data;
     },
     staleTime: 5000,

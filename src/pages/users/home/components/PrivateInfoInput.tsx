@@ -1,5 +1,3 @@
-
-
 const PrivateInfoInput = () => {
   return (
     <div>PrivateInfoInput</div>
