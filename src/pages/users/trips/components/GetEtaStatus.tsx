@@ -18,20 +18,17 @@ const GetEtaStatus: React.FC<GetEtaStatusProps> = ({ estimatedArrival, realArriv
   let colorClass = '';
   let statusText = '';
 
-  if (differenceInMinutes === 0) {
-    colorClass = 'bg-[#6DCCB1] text-black';
+  if (differenceInMinutes <= 0) {
+    // Verde: ETA real es igual al ETA planeado
+    colorClass = 'bg-green-500 text-white';
     statusText = 'A tiempo';
-  } else if (differenceInMinutes < 0) {
-    colorClass = 'bg-[#6DCCB1] text-black';
-    statusText = 'A tiempo';
-  } else if (differenceInMinutes <= 5) {
-    colorClass = 'bg-[#6DCCB1] text-black';
-    statusText = `+${differenceInMinutes} min`;
-  } else if (differenceInMinutes <= 30) {
-    colorClass = 'bg-yellow-500 text-white';
+  } else if (differenceInMinutes > 0 && differenceInMinutes <= 30) {
+    // Amarillo: ETA real entre 1 y 30 minutos del ETA planeado
+    colorClass = 'bg-yellow-500 text-black';
     statusText = `+${differenceInMinutes} min`;
   } else {
-    colorClass = 'bg-[#DC0000] text-white';
+    // Rojo: ETA real es mayor a 30 minutos del ETA planeado
+    colorClass = 'bg-red-500 text-white';
     statusText = `+${differenceInMinutes} min`;
   }
 

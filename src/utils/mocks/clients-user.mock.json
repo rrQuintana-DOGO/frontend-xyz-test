@@ -1,0 +1,89 @@
+{
+  "data": [
+      {
+          "id_client": "2e51278a-a714-4297-b74a-e84b39a59d14",
+          "name": "Ana Martínez",
+          "company_name": "Marvin - Rowe",
+          "address": "664 Ida Mountain",
+          "status": true,
+          "contacts": []
+      },
+      {
+          "id_client": "50616a34-138d-46d6-8c02-3d0ffb13023a",
+          "name": "Carlos Sánchez",
+          "company_name": "Gorczany and Sons",
+          "address": "985 Wood Lane",
+          "status": true,
+          "contacts": []
+      },
+      {
+          "id_client": "3e6a8f8f-1697-4b70-803d-13e037951194",
+          "name": "Carmen Fernández",
+          "company_name": "Prosacco, Rodriguez and Legros",
+          "address": "9264 N 6th Street",
+          "status": true,
+          "contacts": []
+      },
+      {
+          "id_client": "ab9b4aca-a305-4da6-941c-ef4d2e70ba3f",
+          "name": "José López",
+          "company_name": "Pollich - Jakubowski",
+          "address": "370 Krajcik Corner",
+          "status": true,
+          "contacts": []
+      },
+      {
+          "id_client": "b8689fbc-60f0-48e5-b04f-fe43dc9da1cc",
+          "name": "Juan Pérez",
+          "company_name": "Collins LLC",
+          "address": "38046 Casper Falls",
+          "status": true,
+          "contacts": []
+      },
+      {
+          "id_client": "3d12c336-b6be-4c31-aa47-90a6574b3e47",
+          "name": "Laura González",
+          "company_name": "Mayert - Boyle",
+          "address": "16817 Park Drive",
+          "status": true,
+          "contacts": []
+      },
+      {
+          "id_client": "65d7b979-71a8-41d0-b77f-0b050492bfc8",
+          "name": "Lucía Díaz",
+          "company_name": "Leannon - Mohr",
+          "address": "12279 Jenkins Dale",
+          "status": true,
+          "contacts": []
+      },
+      {
+          "id_client": "f46cb3e9-fbca-45dc-8868-6bbeab7a9dcc",
+          "name": "Luis Rodríguez",
+          "company_name": "Goodwin, Fisher and Casper",
+          "address": "1393 N Court Street",
+          "status": true,
+          "contacts": []
+      },
+      {
+          "id_client": "a3f8b853-28a6-497f-b0bc-bc331e4c1d7f",
+          "name": "María García",
+          "company_name": "Emmerich, Beatty and Gorczany",
+          "address": "9759 Manor Close",
+          "status": true,
+          "contacts": []
+      },
+      {
+          "id_client": "f0f95d85-bc51-48e6-8b3d-5818846af05b",
+          "name": "Miguel Hernández",
+          "company_name": "Dibbert, Anderson and Wisozk",
+          "address": "5836 Lake Avenue",
+          "status": true,
+          "contacts": []
+      }
+  ],
+  "meta": {
+      "total_records": 10,
+      "current_page": 1,
+      "total_pages": 1
+  }
+}

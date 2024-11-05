@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Box, Tab, Tabs } from "@mui/material";
 import { useState } from "react";
@@ -5,16 +6,14 @@ import TripsCollapsibleTable from "./components/TripsCollapsibleTable";
 import TripsFilterts from "./components/TripsFilterts";
 import NewTripModal from "./components/NewTripModal";
 import useGetAllTrips from "../../../logic/hooks/trips/useGetAllTrips";
-import CustomBreadcrumbs from "../../../components/CustomBreadcrumbs";
-import { CustomButton } from "../../../components/inputs/CustomButton";
-import Layout from "../../../containers/Layout";
-import CustomTabPanel from "../../../components/CustomTabPanel";
-import CustomModal from "../../../components/CustomModal";
-import CustomPagination from "../../../components/CustomTablePagination";
-import Title from "../../../components/Title";
+import CustomTabPanel from "../../../components/display/CustomTabPanel";
+import CustomModal from "../../../components/display/CustomModal";
+import CustomPagination from "../../../components/display/CustomTablePagination";
+import PageContainer from "../../../containers/PageContainer";
+import Loader from "../../../components/display/Loader";
 
 const TripsPage = () => {
-  const [params, setParams] = useState({ page: 1, limit: 10, tab: 'ALL' });
+  const [params, setParams] = useState({ page: 1, limit: 10, tab: 'ALL', search: '', status: '', client: '', carrier: '', place: '' });
   const { data: trips, isLoading, error } = useGetAllTrips(params);
   const [value, setValue] = useState(0);
 
@@ -25,20 +24,26 @@ const TripsPage = () => {
   const handleChange = (_event: React.SyntheticEvent | null, newValue: number, param?: any) => {
     setValue(newValue);
     if (param) {
-      setParams({ ...params, tab: param, page: 1 });
+      setParams({ ...params, tab: param, page: 1, search: '' });
     }
   };
 
+  const handleSearch = async (words: string) => {
+    setParams({ ...params, search: words, page: 1 });
+  }
+
+  const handleFilter = async (values: any) => {
+    const { search, ...rest } = values;
+    setParams({ ...params, ...rest, page: 1 });
+  }
+
   return (
-    <Layout loading={isLoading}>
-      <CustomBreadcrumbs
-        mainRoute={{ label: 'Inicio', href: '/inicio' }}
-        secondaryRoute="Módulo de viajes"
-      />
-      <div className="flex flex-row w-full justify-between items-center">
-        <Title label="Módulo de viajes" size="3xl" />
-        <CustomButton label="Nuevo viaje" onClick={handleOpen} />
-      </div>
+    <PageContainer
+      title="Módulo de viajes"
+      mainRoute={{ label: 'Inicio', href: '/inicio' }}
+      secondaryRoute="Módulo de viajes"
+      rightButton={{ label: 'Nuevo viaje', action: handleOpen }}
+    >
       <Box sx={{ width: '100%', mt: 3 }}>
         <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
           <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
@@ -49,23 +54,27 @@ const TripsPage = () => {
             <Tab label="Viajes finalizados" onClick={() => handleChange(null, 4, 'TC')} />
           </Tabs>
         </Box>
-        <CustomTabPanel value={0} index={0}>
-          {trips && trips?.data && trips?.data.length && !error && (
-            <>
-              <TripsFilterts />
-              <TripsCollapsibleTable trips={trips.data} />
-              <CustomPagination
-                count={trips.meta.total_pages}
-                page={params.page}
-                rowsPerPage={params.limit}
-                onPageChange={(_event, value) => setParams({ ...params, page: value })}
-                onRowsPerPageChange={(event) => setParams({ ...params, page: 1, limit: Number(event.target.value) })}
-              />
-            </>
-          )}
-          {error && <p>{error.message === 'timeout of 5000ms exceeded' ? 'Error de conexión' : 'Error al cargar los viajes'}</p>}
-          {!trips && !error && <p>No hay viajes disponibles.</p>}
-        </CustomTabPanel>
+        <TripsFilterts params={params} handleSearch={(value: string) => handleSearch(value)} handleFilter={(values: any) => handleFilter(values)} />
+        {
+          isLoading ?
+            <Loader /> :
+            <CustomTabPanel value={0} index={0}>
+              {trips && trips?.data && trips?.data.length && !error && (
+                <>
+                  <TripsCollapsibleTable trips={trips.data} />
+                  <CustomPagination
+                    count={trips.meta.total_pages}
+                    page={params.page}
+                    rowsPerPage={params.limit}
+                    onPageChange={(_event, value) => setParams({ ...params, page: value })}
+                    onRowsPerPageChange={(event) => setParams({ ...params, page: 1, limit: Number(event.target.value) })}
+                  />
+                </>
+              )}
+              {error && <p>{error?.message || 'Ocurrió un error inesperado.'}</p>}
+              {!trips && !error && <p>No hay viajes disponibles.</p>}
+            </CustomTabPanel>
+        }
       </Box>
 
       <CustomModal
@@ -75,7 +84,7 @@ const TripsPage = () => {
       >
         <NewTripModal />
       </CustomModal>
-    </Layout>
+    </PageContainer>
   );
 };
 

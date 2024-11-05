@@ -1,4 +1,4 @@
-import Title from "../../../../components/Title"
+import Title from "../../../../components/display/Title"
 import CardPercentages from "./CardPercentages"
 import GridDemo from "./GridDemo"
 

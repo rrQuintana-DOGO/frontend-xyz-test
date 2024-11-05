@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { useDispatch } from 'react-redux';
-import { setUser } from './redux/slices/authSlice';
-import Router from './config/Router';
+import { setUser } from './logic/redux/slices/authSlice';
+import Router from './containers/navigation/Router';
 
 function App() {
   const dispatch = useDispatch();

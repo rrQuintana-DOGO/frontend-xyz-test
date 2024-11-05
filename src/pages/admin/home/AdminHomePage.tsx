@@ -1,13 +1,12 @@
 import { Box } from "@mui/system";
-import CustomBreadcrumbs from "../../../components/CustomBreadcrumbs";
-import Title from "../../../components/Title";
-import Layout from "../../../containers/Layout";
 import { Tab, Tabs } from "@mui/material";
 import { useState } from "react";
-import CustomTabPanel from "../../../components/CustomTabPanel";
+import CustomTabPanel from "../../../components/display/CustomTabPanel";
 import AdmonHomeFilters from "./components/AdmonHomeFilters";
 import TabOperativo from "./components/TabOperativo";
 import TabProducto from "./components/TabProducto";
+import PageContainer from "../../../containers/PageContainer";
+import TabFinanzas from "./components/TabFinanzas";
 
 function a11yProps(index: number) {
   return {
@@ -24,9 +23,7 @@ export default function AdminHomePage() {
   };
 
   return (
-    <Layout>
-      <CustomBreadcrumbs mainRoute={{ label: 'Inicio', href: '/inicio' }} />
-      <Title label="Módulo admon" size="3xl" />
+    <PageContainer title="Módulo admon" mainRoute={{ label: 'Inicio', href: '/inicio' }}>
       <Box sx={{ width: '100%' }}>
         <div className="flex flex-row items-center justify-between">
           <Box sx={{ borderBottom: 1, borderColor: 'divider', width: '50%' }}>
@@ -45,9 +42,9 @@ export default function AdminHomePage() {
           <TabProducto />
         </CustomTabPanel>
         <CustomTabPanel value={value} index={2}>
-          En desarrollo
+          <TabFinanzas />
         </CustomTabPanel>
       </Box>
-    </Layout>
+    </PageContainer>
   )
 }

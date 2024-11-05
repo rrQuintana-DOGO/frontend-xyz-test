@@ -1,7 +1,7 @@
 import React from 'react'
 import Backdrop from '@mui/material/Backdrop';
 import CircularProgress from '@mui/material/CircularProgress';
-import NavBar from '../components/NavBar';
+import NavBar from '../components/navigation/NavBar';
 
 function Layout({ loading = false, children }: { loading?: boolean, children?: React.ReactNode }) {
   return (

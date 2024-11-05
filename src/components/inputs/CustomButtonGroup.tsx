@@ -1,45 +1,33 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React from 'react';
+import { ButtonGroup } from '@mui/material';
 import { CustomButton } from './CustomButton';
-import CustomSelectField from './CustomSelectField';
 
 interface CustomButtonGroupProps {
   children: React.ReactNode;
-  variant?: 'solid' | 'outline' | 'ghost';
-  color?: 'primary' | 'secondary' | 'success' | 'danger' | 'warning';
-  size?: 'sm' | 'md' | 'lg';
+  variant?: 'contained' | 'outlined' | 'text';
+  color?: 'primary' | 'secondary' | 'success' | 'error' | 'warning';
+  size?: 'small' | 'medium' | 'large';
 }
 
-export const CustomButtonGroup = ({
+export const CustomButtonGroup: React.FC<CustomButtonGroupProps> = ({
   children,
-  variant = 'solid',
-  color = 'primary',
-  size = 'md',
-}: CustomButtonGroupProps) => {
-  const baseGroupClasses = 'inline-flex items-center';
-
+  variant = 'contained',
+  color = 'secondary',
+  size = 'medium',
+}) => {
   return (
-    <div className={baseGroupClasses}>
-      {React.Children.map(children, (child, index) => {
-        if (React.isValidElement(child) && (child.type === CustomButton || child.type === CustomSelectField)) {
-          const isFirst = index === 0;
-          const isLast = index === React.Children.count(children) - 1;
-
-          const borderRadiusClasses = isFirst
-            ? 'rounded-l-md'
-            : isLast
-            ? 'rounded-r-md'
-            : 'border-l-0';
-
+    <ButtonGroup color={color} variant={variant} aria-label="custom button group">
+      {React.Children.map(children, (child) => {
+        if (React.isValidElement(child) && child.type === CustomButton) {
           return React.cloneElement<any>(child, {
-            color,
             variant,
+            color,
             size,
-            className: `${borderRadiusClasses} ${index > 0 ? '-ml-px' : ''}`,
           });
         }
         return child;
       })}
-    </div>
+    </ButtonGroup>
   );
 };

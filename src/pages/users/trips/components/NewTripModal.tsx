@@ -1,8 +1,8 @@
 import React from 'react';
-import Title from '../../../../components/Title';
+import Title from "../../../../components/display/Title";
 import { Box, Tab, Tabs } from '@mui/material';
-import CustomTabPanel from '../../../../components/CustomTabPanel';
-import CustomAccordion from '../../../../components/CustomAccordion';
+import CustomTabPanel from '../../../../components/display/CustomTabPanel';
+import CustomAccordion from '../../../../components/display/CustomAccordion';
 import CustomInput from '../../../../components/inputs/CustomInput';
 
 const NewTripModal = () => {

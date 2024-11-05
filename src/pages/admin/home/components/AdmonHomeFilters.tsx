@@ -1,7 +1,7 @@
 import { Fade, Popper } from "@mui/material"
 import { CustomButton } from "../../../../components/inputs/CustomButton"
 import { CustomButtonGroup } from "../../../../components/inputs/CustomButtonGroup"
-import Title from "../../../../components/Title"
+import Title from "../../../../components/display/Title";
 import { useState } from "react"
 
 const AdmonHomeFilters = () => {
@@ -14,8 +14,8 @@ const AdmonHomeFilters = () => {
 
   return (
     <>
-      <CustomButtonGroup variant="outline" color="secondary" size="sm">
-        <CustomButton selected label="Últimos 7 días" onClick={() => console.log('One clicked')} />
+      <CustomButtonGroup variant="outlined" color="secondary" size="small">
+        <CustomButton label="Últimos 7 días" onClick={() => console.log('One clicked')} />
         <CustomButton label="15 días" onClick={() => console.log('Two clicked')} />
         <CustomButton label="30 días" onClick={() => console.log('Three clicked')} />
         <CustomButton label="Selecciona fecha" onClick={(event: React.MouseEvent<HTMLButtonElement>) => handleClick(event)} />

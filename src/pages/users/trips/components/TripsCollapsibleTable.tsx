@@ -79,26 +79,27 @@ function EnhancedTableHead(props: { order: 'asc' | 'desc'; orderBy: any; onReque
   return (
     <TableHead>
       <TableRow sx={{ '& > *': { paddingBlock: '4px' } }}>
-        {headCells.map((headCell) => (
+        {headCells.map((headCell, index) => (
           <TableCell
-          align={headCell.numeric ? 'right' : 'left'}
-          sortDirection={orderBy === headCell.id ? order : false}
-        >
-          <TableSortLabel
-            active={orderBy === headCell.id}
-            direction={orderBy === headCell.id ? order : 'asc'}
-            onClick={createSortHandler(headCell.id)}
+            key={index}
+            align={headCell.numeric ? 'right' : 'left'}
+            sortDirection={orderBy === headCell.id ? order : false}
           >
-            <Box component="span" sx={{ fontWeight: 600 }}>
-              {headCell.label}
-            </Box>
-            {orderBy === headCell.id ? (
-              <Box component="span" sx={visuallyHidden}>
-                {order === 'desc' ? 'sorted descending' : 'sorted ascending'}
+            <TableSortLabel
+              active={orderBy === headCell.id}
+              direction={orderBy === headCell.id ? order : 'asc'}
+              onClick={createSortHandler(headCell.id)}
+            >
+              <Box component="span" sx={{ fontWeight: 600 }}>
+                {headCell.label}
               </Box>
-            ) : null}
-          </TableSortLabel>
-        </TableCell>
+              {orderBy === headCell.id ? (
+                <Box component="span" sx={visuallyHidden}>
+                  {order === 'desc' ? 'sorted descending' : 'sorted ascending'}
+                </Box>
+              ) : null}
+            </TableSortLabel>
+          </TableCell>
         ))}
       </TableRow>
     </TableHead>
@@ -123,7 +124,11 @@ function Row(props: { row: ReturnType<typeof createData> }) {
         <TableCell align="left">{row.carrier}</TableCell>
         <TableCell align="left">{row.origin}</TableCell>
         <TableCell align="left">{row.destination}</TableCell>
-        <TableCell align="left">{moment.unix(Number(row.estimatedArrival)).format('DD/MM/YYYY HH:mm:ss')}</TableCell>
+        <TableCell align="left">
+          {moment.unix(Number(row.estimatedArrival)).isValid()
+            ? moment.unix(Number(row.estimatedArrival)).format('DD/MM/YYYY HH:mm:ss')
+            : '-'}
+        </TableCell>
         <TableCell align="left">{<GetEtaStatus estimatedArrival={Number(row.estimatedArrival)} realArrival={Number(row.eta)} />
         }</TableCell>
       </TableRow>
@@ -156,7 +161,7 @@ const TripsCollapsibleTable = ({ trips }: { trips: TripData[] }) => {
 
   return (
     <Box sx={{ width: '100%' }}>
-      <Paper sx={{ width: '100%'}} elevation={0}>
+      <Paper sx={{ width: '100%' }} elevation={0}>
         <TableContainer>
           <Table>
             <EnhancedTableHead

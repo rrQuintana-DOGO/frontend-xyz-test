@@ -29,7 +29,7 @@ const CustomInput = ({
 
   return (
     <div className='flex flex-col w-full'>
-      <label htmlFor={name} className={ `${isError && 'text-red-500'} ${size === 'sm' && 'font-medium'}`}>
+      <label htmlFor={name} className={ `${isError && 'text-red-500'} ${size === 'sm' && 'font-semibold'}`}>
         {label}
       </label>
       <input
@@ -42,9 +42,6 @@ const CustomInput = ({
       />
       {helperText && (
         <div className="text-gray-500 text-xs mt-1">{helperText}</div>
-      )}
-      {isError && (
-        <div className="text-red-500 text-sm">{error}</div>
       )}
     </div>
   );

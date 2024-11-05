@@ -1,121 +1,89 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { Autocomplete, TextField } from '@mui/material';
 
 interface CustomSelectFieldProps {
   label?: string;
   name: string;
-  value: string;
+  value: string | number;
   options: { value: string | number; label: string }[];
   onChange: (value: string | number) => void;
   error?: string;
   touched?: boolean;
-  variant?: 'solid' | 'outline' | 'ghost';
-  color?: 'primary' | 'secondary' | 'success' | 'danger' | 'warning';
-  size?: 'sm' | 'md' | 'lg';
-  borderRadius?: {
-    left?: 'none' | 'sm' | 'md' | 'lg';
-    right?: 'none' | 'sm' | 'md' | 'lg';
-  };
+  variant?: 'filled' | 'outlined' | 'standard';
+  color?: 'primary' | 'secondary' | 'success' | 'error' | 'warning' | 'info';
+  size?: 'small' | 'medium';
+  formVariant?: boolean;
 }
 
 const CustomSelectField: React.FC<CustomSelectFieldProps> = ({
   label,
-  name,
   value,
   options,
   onChange,
   error,
   touched,
-  variant = 'solid',
+  variant = 'standard',
   color = 'primary',
-  size = 'md',
-  borderRadius = { left: 'md', right: 'md' },
+  size = 'medium',
+  formVariant
 }) => {
-  const [isOpen, setIsOpen] = useState(false);
-  const isError = touched && error;
+  const isError = touched && !!error;
 
-  const colorClasses = {
-    primary: 'bg-blue-500 border-blue-500 text-blue-500',
-    secondary: 'bg-gray-500 border-gray-500 text-gray-500',
-    success: 'bg-green-500 border-green-500 text-green-500',
-    danger: 'bg-red-500 border-red-500 text-red-500',
-    warning: 'bg-yellow-500 border-yellow-500 text-yellow-500',
-  }[color];
-
-  // Clases para el borde redondeado
-  const borderRadiusClasses = {
-    left: {
-      none: 'rounded-l-none border border-r-0',
-      sm: 'rounded-l-sm',
-      md: 'rounded-l-md',
-      lg: 'rounded-l-lg border',
-    }[borderRadius.left || 'md'],
-      right: {
-        none: 'rounded-r-none border border-l-0',
-        sm: 'rounded-r-sm border',
-        md: 'rounded-r-md',
-        lg: 'rounded-r-lg border',
-      }[borderRadius.right || 'md'],
-  };
-
-  // Clases para el botón
-  const buttonClasses = `
-    ${colorClasses}
-    ${variant === 'outline' ? 'bg-transparent' : ''}
-    ${variant === 'ghost' ? 'bg-transparent' : ''}
-    ${size === 'sm' ? 'text-sm py-1 px-2' : size === 'md' ? 'text-md py-2 px-4' : 'text-lg py-3 px-6'}
-    border ${borderRadiusClasses.left} ${borderRadiusClasses.right}
-    ${isError ? 'border-red-500' : ''}
-  `;
-
-  const labelClasses = 'block mb-1 text-gray-700 font-medium';
-  const errorClasses = 'text-red-500 text-xs mt-1';
-
-  const handleButtonClick = () => {
-    setIsOpen(!isOpen);
-  };
-
-  const handleOptionClick = (optionValue: string | number) => {
-    onChange(optionValue);
-    setIsOpen(false);
-  };
+  const style = {
+    padding: 0,
+    backgroundColor: 'transparent',
+    '& .MuiInputBase-root': {
+      backgroundColor: 'rgb(255, 255, 255)',
+      border: '1px solid rgba(0, 0, 0, 0.17)',
+      borderRadius: '0.2rem',
+      padding: '0px 1px',
+      height: '2.1rem',
+      '&:hover': {
+        borderColor: 'rgba(0, 0, 0, 0.4)',
+      },
+      '&.Mui-focused': {
+        borderColor: 'black',
+        boxShadow: `0 0 0 1px black`,
+      },
+    },
+    '& .MuiOutlinedInput-notchedOutline': {
+      border: 'none',
+    },
+    '& .MuiFormLabel-root': {
+      display: 'none',
+    },
+  }
 
   return (
-    <div className="relative">
-      {label && (
-        <label htmlFor={name} className={labelClasses}>
-          {label}
-        </label>
-      )}
-      <button onClick={handleButtonClick} className={buttonClasses}>
-        {options.find(option => option.value === value)?.label || 'Selecciona una opción'}
-      </button>
-      {isOpen && (
-        <div className="absolute z-10 bg-white border border-gray-300 rounded mt-1 w-full">
-          {options.map(option => (
-            <div
-              key={option.value}
-              onClick={() => handleOptionClick(option.value)}
-              className="py-2 px-4 hover:bg-gray-200 cursor-pointer"
-            >
-              {option.label}
-            </div>
-          ))}
-        </div>
-      )}
-      {isError && <span className={errorClasses}>{error}</span>}
-      <select
-        id={name}
-        name={name}
-        value={value}
-        onChange={(e) => onChange(e.target.value)}
-        style={{ display: 'none' }}
-      >
-        {options.map(option => (
-          <option key={option.value} value={option.value}>
-            {option.label}
-          </option>
-        ))}
-      </select>
+    <div className='w-full'>
+      {
+        formVariant && (
+          <label className={`font-semibold`}>
+            {label}
+          </label>
+        )
+      }
+      <Autocomplete
+        options={options}
+        getOptionLabel={(option) => option.label}
+        onChange={(_, newValue) => {
+          onChange(newValue ? newValue.value : '');
+        }}
+        value={options.find((option) => option.value === value) || null}
+        renderInput={(params) => (
+          <TextField
+            {...params}
+            error={isError}
+            helperText={isError ? error : undefined}
+            variant={variant}
+            size={size}
+            label={label}
+            color={color}
+            placeholder='Selecciona una opción'
+            sx={formVariant ? style : {}}
+          />
+        )}
+      />
     </div>
   );
 };

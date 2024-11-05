@@ -35,7 +35,6 @@ const TabOperativo = () => {
         <Cards key={data.id} name={data.name} value={data.value} />
       ))}
     </div>
-
   )
 }
 

@@ -1,28 +1,37 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { login } from '../../redux/slices/authSlice';
+import { login } from '../../logic/redux/slices/authSlice';
 import { useNavigate } from 'react-router-dom';
-import { Formik } from 'formik';
 import Logo from '../../assets/images/logo_horizontal.png';
 import { CustomButton } from '../../components/inputs/CustomButton';
 import CustomInput from '../../components/inputs/CustomInput';
-import Title from '../../components/Title';
 import GoogleLogo from '../../assets/images/google_logo.png';
 import MicrosoftLogo from '../../assets/images/Microsoft_logo.png';
 import loginValidationSchema from '../../utils/validations/loginValidation.schema';
 import { useGoogleLogin } from '@react-oauth/google';
+import { useFormik } from 'formik';
+import ErrorMessage from './components/ErrorMessage';
+import Title from '../../components/display/Title';
+import { Switch } from '@mui/material';
+import { useSelector } from 'react-redux';
+import { RootState } from 'src/logic/redux/store';
+import { setOffline } from '../../logic/redux/slices/offlineSlice';
 
 const LoginPage: React.FC = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const [tries, setTries] = React.useState(0);
+  const isOffline = useSelector((state: RootState) => state.offline.offline);
 
   const handleLogin = (values: { username: string; password: string }) => {
-    dispatch(login(values));
-
-    if(values.username === 'admin') {
+    if (values.username === 'admin' && values.password === 'password') {
+      dispatch(login(values));
       navigate('/admin/');
+    } else if (values.username && values.password) {
+      dispatch(login(values));
+      navigate('/viajes');
     } else {
-      navigate('/xyz/');
+      setTries(prevTries => prevTries + 1);
     }
   };
 
@@ -32,55 +41,61 @@ const LoginPage: React.FC = () => {
     },
   });
 
+  const formik = useFormik({
+    initialValues: { username: '', password: '' },
+    validationSchema: loginValidationSchema,
+    onSubmit: handleLogin,
+  });
+
   return (
     <div className="flex flex-1 min-h-screen w-full">
-      <div className="w-3/5 bg-blue-500  min-h-screen"></div>
+      <div className="w-3/5 bg-blue-500 min-h-screen"></div>
       <div className="w-2/5 bg-white flex flex-col justify-center p-12 md:p-24">
-        <Formik
-          initialValues={{ username: '', password: '' }}
-          validationSchema={loginValidationSchema}
-          onSubmit={handleLogin}
-        >
-          {({ values, errors, touched, handleChange, handleBlur, handleSubmit }) => (
-            <form onSubmit={handleSubmit} className="flex flex-col space-y-6">
-              <img src={Logo} alt="Logo Dogo" className="w-40" />
-              <Title size="3xl" label="Iniciar sesión" />
-              <div className="space-y-4 w-full">
-                <CustomInput
-                  name="username"
-                  label="Usuario"
-                  value={values.username}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  error={errors.username}
-                  touched={touched.username}
+        <form onSubmit={formik.handleSubmit} className="flex flex-col space-y-6">
+          <img src={Logo} alt="Logo Dogo" className="w-40" />
+          <Title size="3xl" label="Inicia sesión" />
+          <div className="space-y-4 w-full">
+            <CustomInput
+              name="username"
+              label="Usuario"
+              value={formik.values.username}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              error={formik.errors.username}
+              touched={formik.touched.username}
+            />
+            <CustomInput
+              label='Contraseña'
+              name="password"
+              type="password"
+              value={formik.values.password}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              error={formik.errors.password}
+              touched={formik.touched.password}
+            />
+            {
+              (formik.errors.username && formik.errors.password) && (
+                <ErrorMessage
+                  title='Los datos ingresados no son correctos'
+                  text={tries < 3 ? 'Verifica que el usuario y contraseña sean correctos.' : 'Verifica que el usuario y contraseña sean correctos. Puedes restablecer tu contraseña. Si el problema continua, contacta al administrador de tu empresa para que pueda darte acceso a la plataforma.'}
                 />
-                <CustomInput
-                  name="password"
-                  label="Contraseña"
-                  type="password"
-                  value={values.password}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  error={errors.password}
-                  touched={touched.password}
-                />
-              </div>
-              <div>
-                <CustomButton
-                  label="Iniciar sesión"
-                  color="primary"
-                  variant="solid"
-                  size="md"
-                  onClick={handleSubmit}
-                />
-              </div>
-            </form>
-          )}
-        </Formik>
+              )
+            }
+          </div>
+          <div>
+            <CustomButton
+              label="Iniciar sesión"
+              color="primary"
+              variant='contained'
+              size='medium'
+              onClick={formik.handleSubmit}
+            />
+          </div>
+        </form>
 
         <p className='text-zinc-500 font-light mt-5'>
-          Olvidaste tu contraseña?{' '}
+          ¿Olvidaste tu contraseña?{' '}
           <span className='text-blue-400 cursor-pointer'>Recuperala aquí.</span>
         </p>
 
@@ -98,6 +113,13 @@ const LoginPage: React.FC = () => {
             <p className=''>Ingresa con Microsoft</p>
           </div>
         </div>
+      </div>
+      <div className='mt-auto p-2'>
+        <p>Offline</p>
+        <Switch
+          checked={isOffline}
+          onChange={() => dispatch(setOffline(!isOffline))}
+        />
       </div>
     </div>
   );
