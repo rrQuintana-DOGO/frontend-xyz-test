@@ -9,10 +9,10 @@ import useGetAllCarriers from "../../../../logic/hooks/carrieres/useGetAllCarrie
 import { useGetAllClients } from "../../../../logic/hooks/clients/useGetAllClients";
 
 const TripsFilters = ({ params, handleSearch, handleFilter }: any) => {
-  const { data: statusData, isLoading: isLoadingStatus, isError: isErrorStatus } = useGetAllStatus({ limit: -1, page: 1 });
-  const { data: clientsData, isLoading: isLoadingClients, isError: isErrorClients } = useGetAllClients({ limit: -1, page: 1 });
-  const { data: carriersData, isLoading: isLoadingCarriers, isError: isErrorCarriers } = useGetAllCarriers({ limit: -1, page: 1 });
-  const { data: placesData, isLoading: isLoadingPlaces, isError: isErrorPlaces } = useGetAllPlaces({ limit: -1, page: 1 });
+  const { data: statusData, isLoading: isLoadingStatus } = useGetAllStatus({ limit: -1, page: 1 });
+  const { data: clientsData, isLoading: isLoadingClients } = useGetAllClients({ limit: -1, page: 1 });
+  const { data: carriersData, isLoading: isLoadingCarriers } = useGetAllCarriers({ limit: -1, page: 1 });
+  const { data: placesData, isLoading: isLoadingPlaces } = useGetAllPlaces({ limit: -1, page: 1 });
 
   const formik = useFormik({
     initialValues: { search: '', status: '', client: '', carrier: '', place: '' },

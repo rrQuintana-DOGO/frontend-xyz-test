@@ -8,7 +8,7 @@ import { useGetAllClients_ADMON } from "../../../logic/hooks/clients/useGetAllCl
 import NewClientModal from "./components/NewClientModal"
 
 const ClientsPage = () => {
-  const [params, setParams] = useState({ page: 1, limit: 10 });
+  const [params, _setParams] = useState({ page: 1, limit: 10 });
   const { data: clients, isLoading, error } = useGetAllClients_ADMON(params);
 
   const [newClientModal, setNewClientModal] = useState(false);
