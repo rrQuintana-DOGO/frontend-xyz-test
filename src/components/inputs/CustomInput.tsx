@@ -21,28 +21,47 @@ const CustomInput = ({
   onChange,
   onBlur,
   error,
-  touched,
   helperText,
   size = 'md',
 }: Props) => {
-  const isError = touched && error;
+  const isError = error;
+
+  // Mapping sizes to padding styles
+  const sizeClass = {
+    sm: 'p-1 text-sm',
+    md: 'p-2',
+    lg: 'p-3 text-lg',
+  };
 
   return (
-    <div className='flex flex-col w-full'>
-      <label htmlFor={name} className={ `${isError && 'text-red-500'} ${size === 'sm' && 'font-semibold'}`}>
+    <div className="flex flex-col w-full">
+      <label
+        htmlFor={name}
+        className={`font-semibold ${isError ? 'text-red-500' : 'text-gray-700'}`}
+      >
         {label}
       </label>
       <input
+        id={name}
         name={name}
         type={type}
         value={value}
         onChange={onChange}
         onBlur={onBlur}
-        className={`${size === 'sm' && 'p-1'} ${size === 'md' && 'p-2'} ${size === 'lg' && 'p-3'} border rounded ${isError ? 'border-red-500' : 'border-gray-300'}`}
+        className={`border rounded ${sizeClass[size]} ${
+          isError ? 'border-red-500 focus:border-red-500 focus:ring-red-500' : 'border-gray-300 focus:border-gray-500'
+        }`}
+        aria-describedby={isError ? `${name}-error` : undefined}
       />
-      {helperText && (
-        <div className="text-gray-500 text-xs mt-1">{helperText}</div>
-      )}
+      {isError ? (
+        <div id={`${name}-error`} className="text-red-500 text-xs mt-1">
+          {error}
+        </div>
+      ) : helperText ? (
+        <div className={`text-gray-500 text-xs mt-1 ${isError ? 'text-red-500' : ''}`}>
+          {helperText}
+        </div>
+      ) : null}
     </div>
   );
 };

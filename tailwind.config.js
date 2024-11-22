@@ -23,7 +23,11 @@ export default {
       'sm': '.875rem',
       'xs': '.75rem',
     },
-    extend: {},
+    extend: {
+      colors: {
+        blueDogo: '#0071C2'
+      }
+    },
   },
   plugins: [],
 }

@@ -1,4 +1,4 @@
-import { RouterInterface } from "@utils/interfaces/RouterInterface";
+import { RouterInterface } from "@logic/interfaces/RouterInterface";
 import { Routes, Route } from "react-router-dom";
 export default function ConfigurationRouter({ routes } : { routes: RouterInterface[] }) {
   return (

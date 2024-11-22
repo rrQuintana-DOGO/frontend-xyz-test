@@ -1,8 +1,8 @@
 import CustomBreadcrumbs from "@components/navigation/CustomBreadcrumbs"
 import { CustomButton } from "@components/inputs/CustomButton";
 import Title from "@components/display/Title";
-import { PageContainerWithSideBarProps } from "@utils/interfaces/ContainerInterface";
-import LayoutWithSideBar from "./LayoutWithSideBar";
+import { PageContainerWithSideBarProps } from "@logic/interfaces/ContainerInterface";
+import LayoutWithSideBar from "@containers/LayoutWithSideBar";
 
 const PageContainerWithSideBar = (
   { title, 

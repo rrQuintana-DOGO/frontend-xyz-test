@@ -1,8 +1,9 @@
+import DocumentTitle from "@components/navigation/DocumentTitle";
 
-const TripsModulePage = () => {
+export const TripsModulePage = () => {
+  DocumentTitle('Configuración | Viajes');
+
   return (
     <p>Configuración del modulo de viajes</p>
   );
 }
-
-export default TripsModulePage;

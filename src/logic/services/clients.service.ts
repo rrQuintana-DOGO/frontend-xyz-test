@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
 import { adminsApi, usersApi } from "../../config/axiosConfig";
-import { Client } from "../../utils/interfaces/ClientInterface";
+import { Client } from "../interfaces/ClientInterface";
 
 const baseURL = '/clients';
 

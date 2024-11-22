@@ -9,7 +9,7 @@ interface CustomButtonProps {
   icon?: React.ReactNode;
   label: string;
   onClick?: (...args: any[]) => void;
-  className?: string;
+  sx?: any;
   selected?: boolean;
   disabled?: boolean;
 }
@@ -21,7 +21,7 @@ export const CustomButton: React.FC<CustomButtonProps> = ({
   icon,
   label,
   onClick,
-  className = '',
+  sx = {},
   disabled = false,
 }) => {
   return (
@@ -30,7 +30,7 @@ export const CustomButton: React.FC<CustomButtonProps> = ({
       color={color}
       size={size}
       onClick={onClick}
-      className={className}
+      sx={sx}
       startIcon={icon}
       disabled={disabled}
     >

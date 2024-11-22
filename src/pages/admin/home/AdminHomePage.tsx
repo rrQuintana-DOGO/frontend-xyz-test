@@ -1,11 +1,12 @@
 import { Box } from "@mui/system";
 import { Tab, Tabs } from "@mui/material";
 import { useState } from "react";
-import CustomTabPanel from "../../../components/display/CustomTabPanel";
+import CustomTabPanel from "@components/display/CustomTabPanel";
 import AdmonHomeFilters from "./components/AdmonHomeFilters";
-import TabOperativo from "./components/TabOperativo";
-import TabProducto from "./components/TabProducto";
-import PageContainer from "../../../containers/PageContainer";
+import TabOperativo from "@pages/admin/home/components/TabOperativo";
+import TabProducto from "@pages/admin/home/components/TabProducto";
+import PageContainer from "@containers/PageContainer";
+import DocumentTitle from "@components/navigation/DocumentTitle";
 import TabFinanzas from "./components/TabFinanzas";
 
 function a11yProps(index: number) {
@@ -16,12 +17,14 @@ function a11yProps(index: number) {
 }
 
 export default function AdminHomePage() {
+  DocumentTitle('Inicio | Módulo admon');
+
   const [value, setValue] = useState(0);
 
   const handleChange = (_event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
   };
-
+  
   return (
     <PageContainer title="Módulo admon" mainRoute={{ label: 'Inicio', href: '/inicio' }}>
       <Box sx={{ width: '100%' }}>

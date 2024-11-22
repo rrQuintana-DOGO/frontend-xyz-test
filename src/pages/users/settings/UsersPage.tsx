@@ -1,8 +1,8 @@
+import DocumentTitle from "@components/navigation/DocumentTitle";
 
-const UsersPage = () => {
+export const UsersPage = () => {
+  DocumentTitle('Configuración | Usuarios');
   return (
     <p>Configuración de los usuarios</p>
   );
 }
-
-export default UsersPage;

@@ -10,6 +10,8 @@ import 'primereact/resources/themes/lara-light-cyan/theme.css';
 import { envs } from './config/envs.ts';
 import { ThemeProvider } from '@mui/material';
 import { theme } from './config/MuiTheme.tsx';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider/LocalizationProvider';
+import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment'
 
 const queryClient = new QueryClient();
 
@@ -19,7 +21,9 @@ createRoot(document.getElementById('root')!).render(
       <GoogleOAuthProvider clientId={envs.googleClientId}>
         <Provider store={store}>
           <ThemeProvider theme={theme}>
-            <App />
+            <LocalizationProvider dateAdapter={AdapterMoment}>
+              <App />
+            </LocalizationProvider>
           </ThemeProvider>
         </Provider>
       </GoogleOAuthProvider>

@@ -13,9 +13,14 @@ interface Event {
 }
 
 interface UnitSetpoint {
-  id_unit_setpoint: string;
-  name: string;
-  value: string;
+  unit : {
+    id_unit: string;
+    name: string;
+  }
+  setpoint : {
+    id_setpoint: string;
+    name: string;
+  }
 }
 
 interface TripStatus {
@@ -70,12 +75,23 @@ interface Phase {
   symbol: string;
 }
 
+export interface Coords {
+  latitude: number 
+  longitude: number;
+}
+
 interface Place {
-  id_place: string;
+  icon?: string;
+  id_trips_has_places?: string;
+  id_place?: string;
   name: string;
-  estimate_arrive_date: string; // Timestamp en formato string
-  real_arrive_date: string; // Timestamp en formato string
-  places: Place;
+  estimate_arrive_date?: string; // Timestamp en formato string
+  real_arrive_date?: string; // Timestamp en formato string
+  estimate_departure_date?: string; // Timestamp en formato string
+  real_departure_date?: string; // Timestamp en formato string
+  places?: Place;
+  coords: Coords
+  isMiddle?: boolean
 }
 
 interface TripData {
@@ -103,6 +119,9 @@ interface TripData {
   origin: Place; // Origen del viaje
   destination: Place; // Destino del viaje
   estimatedArrival: string; // Estimación de llegada
+  middle_point: Coords
+  waypoints: Coords[]
+  way_bill?: string 
 }
 
 export type {

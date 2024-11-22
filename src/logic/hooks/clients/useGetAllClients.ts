@@ -2,6 +2,7 @@
 import { useQuery } from '@tanstack/react-query';
 import { ADMON_clientService, USERS_clientService } from '../../services/clients.service';
 import mock from '../../../utils/mocks/clients-user.mock.json';
+import mock_amdon from '../../../utils/mocks/clients-admon.json';
 import { useSelector } from 'react-redux';
 import { RootState } from 'src/logic/redux/store';
 
@@ -26,10 +27,12 @@ const useGetAllClients = (query: ClientQuery) => {
 };
 
 const useGetAllClients_ADMON = (query: ClientQuery) => {
+  const isOffline = useSelector((state: RootState) => state.offline.offline);
+
   return useQuery({
     queryKey: ['client', query],
     queryFn: async () => {
-      const data = await ADMON_clientService.getAllClients(query);
+      const data = isOffline ? mock_amdon : await ADMON_clientService.getAllClients(query);
       return data;
     },
     staleTime: 5000,

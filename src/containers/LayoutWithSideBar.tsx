@@ -2,11 +2,11 @@ import React from 'react';
 import Backdrop from '@mui/material/Backdrop';
 import CircularProgress from '@mui/material/CircularProgress';
 import NavBar from '@components/navigation/NavBar';
-import { SideBarMenuItems } from '@utils/interfaces/RouterInterface';
+import { SideBarMenuItems } from '@logic/interfaces/RouterInterface';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { setName } from '../logic/redux/slices/routeSlice';
-import { RootState } from 'src/logic/redux/store';
+import { setName } from '@logic/redux/slices/routeSlice';
+import { RootState } from '@logic/redux/store';
 
 function LayoutWithSideBar(
   { loading = false,
@@ -46,7 +46,7 @@ function LayoutWithSideBar(
                       onClick={() => handleSetName(child.name)} 
                       to={child.route} 
                       key={index} 
-                      className={`font-thin ${routeName === child.name ? 'text-[#0071C2] underline font-bold' : ''}`}
+                      className={`font-regular ${routeName === child.name ? 'text-[#0071C2] underline font-bold' : ''}`}
                     >
                       {child.name}
                     </Link>

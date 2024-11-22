@@ -1,0 +1,170 @@
+{
+  "data": [
+    {
+      "id_client": "0dad5e8c-e5cc-4f88-babd-31d37048a4f3",
+      "id_stripe_customer": "cus_R8t9uxS0HUBwX5",
+      "name": "Francisco Figueroa",
+      "email": "pixie24w4@gmail.com",
+      "rfc": "JFTF611002A31",
+      "address": "Mazatlán, Sinaloa, México",
+      "status": true,
+      "company_name": "Transportes Francisco Figueroa",
+      "subscription": {
+        "id_stripe_subscription": "sub_1QGbNA06eQlOFy0Jr837Vs7L",
+        "status": "trialing",
+        "current_period_end": 1739171028,
+        "current_period_start": 1730531028,
+        "trial_start": 1730531028,
+        "trial_end": 1739171028,
+        "created": 1730531028,
+        "collection_method": "charge_automatically",
+        "days_until_due": null,
+        "units": 10,
+        "items": [
+          {
+            "id": "prod_R4ctZAEYKYY5Nc",
+            "name": "Test - Viajes",
+            "quantity": 10
+          },
+          {
+            "id": "prod_R4cuwcuGzWn0BS",
+            "name": "Test - Alertas",
+            "quantity": 10
+          },
+          {
+            "id": "prod_R4cv0uLn2hL3eP",
+            "name": "Test - unidades",
+            "quantity": 10
+          },
+          {
+            "id": "prod_R39n5rH2UpxJ6o",
+            "name": "Test - Temperatura",
+            "quantity": 10
+          },
+          {
+            "id": "prod_R39mDqpIzCOwQZ",
+            "name": "Test - Combustibe",
+            "quantity": 10
+          },
+          {
+            "id": "prod_R39h05HNrB4F9F",
+            "name": "Test - Mantenimientos",
+            "quantity": 10
+          }
+        ],
+        "latest_payment_status": "paid",
+        "total_spent": 0,
+        "payment_method_type": "card",
+        "default_payment_method": null,
+        "latest_invoice": "in_1QGbNA06eQlOFy0JKKINkngF",
+        "start_date": 1730531028
+      }
+    },
+    {
+      "id_client": "1fece6bd-a765-4e13-a88f-64e536af799c",
+      "id_stripe_customer": "cus_R5t6hFnoGOSd5p",
+      "name": "Francisco Figueroa",
+      "email": "pixie244@gmail.com",
+      "rfc": "JFTF611002AO1",
+      "address": "Mazatlán, Sinaloa, México",
+      "status": true,
+      "company_name": "Transportes Francisco Figueroa",
+      "subscription": {
+        "id_stripe_subscription": "sub_1QDhKU06eQlOFy0JDaKHDRuj",
+        "status": "trialing",
+        "current_period_end": 1738478942,
+        "current_period_start": 1729838942,
+        "trial_start": 1729838942,
+        "trial_end": 1738478942,
+        "created": 1729838942,
+        "collection_method": "charge_automatically",
+        "days_until_due": null,
+        "units": 10,
+        "items": [
+          {
+            "id": "prod_R4ctZAEYKYY5Nc",
+            "name": "Test - Viajes",
+            "quantity": 10
+          },
+          {
+            "id": "prod_R4cuwcuGzWn0BS",
+            "name": "Test - Alertas",
+            "quantity": 10
+          },
+          {
+            "id": "prod_R4cv0uLn2hL3eP",
+            "name": "Test - unidades",
+            "quantity": 10
+          },
+          {
+            "id": "prod_R39n5rH2UpxJ6o",
+            "name": "Test - Temperatura",
+            "quantity": 10
+          },
+          {
+            "id": "prod_R39mDqpIzCOwQZ",
+            "name": "Test - Combustibe",
+            "quantity": 10
+          },
+          {
+            "id": "prod_R39h05HNrB4F9F",
+            "name": "Test - Mantenimientos",
+            "quantity": 10
+          }
+        ],
+        "latest_payment_status": "paid",
+        "total_spent": 0,
+        "payment_method_type": "card",
+        "default_payment_method": null,
+        "latest_invoice": "in_1QDhKU06eQlOFy0J8Dq5cbIW",
+        "start_date": 1729838942
+      }
+    },
+    {
+      "id_client": "e27509e6-1fb9-43e8-8122-a7c33d1f5c2d",
+      "id_stripe_customer": "cus_R5rqG5N5EBrcyB",
+      "name": "Francisco Figueroa",
+      "email": "pixie22@gmail.com",
+      "rfc": "JFTF611002AO2",
+      "address": "Mazatlán, Sinaloa, México",
+      "status": true,
+      "company_name": "Transportes Francisco Figueroa",
+      "subscription": {
+        "id_stripe_subscription": "sub_1QDg6V06eQlOFy0J077s0Shg",
+        "status": "trialing",
+        "current_period_end": 1738474231,
+        "current_period_start": 1729834231,
+        "trial_start": 1729834231,
+        "trial_end": 1738474231,
+        "created": 1729834231,
+        "collection_method": "charge_automatically",
+        "days_until_due": null,
+        "units": 80,
+        "items": [
+          {
+            "id": "prod_R4ctZAEYKYY5Nc",
+            "name": "Test - Viajes",
+            "quantity": 80
+          },
+          {
+            "id": "prod_R4cuwcuGzWn0BS",
+            "name": "Test - Alertas",
+            "quantity": 80
+          },
+          {
+            "id": "prod_R4cv0uLn2hL3eP",
+            "name": "Test - unidades",
+            "quantity": 80
+          }
+        ],
+        "latest_payment_status": "paid",
+        "total_spent": 0,
+        "payment_method_type": "card",
+        "default_payment_method": null,
+        "latest_invoice": "in_1QDg6V06eQlOFy0JccFTDeIN",
+        "start_date": 1729834231
+      }
+    }
+  ],
+  "meta": { "total_records": 3, "current_page": 1, "total_pages": 1 }
+}

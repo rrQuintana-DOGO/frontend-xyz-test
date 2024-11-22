@@ -1,8 +1,8 @@
+import DocumentTitle from "@components/navigation/DocumentTitle";
 
-const ProfilePage = () => {
+export const ProfilePage = () => {
+  DocumentTitle('Configuración | Perfil');
   return (
     <p>Configuración del perfil</p>
   );
 }
-
-export default ProfilePage

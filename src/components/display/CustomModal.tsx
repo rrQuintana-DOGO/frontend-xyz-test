@@ -14,7 +14,6 @@ const style = (size: number) => ({
   width: size,
   bgcolor: 'background.paper',
   boxShadow: 24,
-  p: 4,
   borderRadius: 1,
   position: 'relative',
   maxHeight: '90vh',

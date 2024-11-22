@@ -27,7 +27,7 @@ export const showNotification = (title: string, message: string, type: 'success'
   ReactDOM.render(
     <Snackbar 
       open 
-      autoHideDuration={4000} 
+      autoHideDuration={8000} 
       onClose={handleClose} 
       anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }} 
       TransitionComponent={Transition}

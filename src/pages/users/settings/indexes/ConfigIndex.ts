@@ -1,12 +1,15 @@
 
-import ProfilePage from "../ProfilePage"
-import SubscriptionPage from "../SubscriptionPage"
-import NotificationPage from "../NotificationPage"
-import UsersPage from "../UsersPage"
-import TripsModulePage from "../TripsModulePage"
-import TemperatureModulePage from "../TemperatureModulePage"
-import AlertsModulePage from "../AlertsModulePage"
-import IntegrationsPage from "../IntegrationsPage"
+import { 
+  ProfilePage,
+  SubscriptionPage,
+  NotificationPage,
+  UsersPage,
+  TripsModulePage,
+  TemperatureModulePage,
+  AlertsModulePage,
+  IntegrationsPage,
+} from "@pages/users/index"
+
 
 export const configIndex = [
   {

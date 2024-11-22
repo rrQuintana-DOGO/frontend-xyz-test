@@ -7,7 +7,7 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
 import { useNavigate } from 'react-router-dom';
-import { RootState } from '../../logic/redux/store';
+import { RootState } from '@logic/redux/store';
 import { useSelector } from 'react-redux';
 import { adminRoutes, userRoutes } from '../../config/routes';
 

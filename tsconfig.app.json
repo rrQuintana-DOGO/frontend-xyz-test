@@ -25,6 +25,8 @@
       "@pages/*": ["./src/pages/*"],
       "@containers/*": ["./src/containers/*"],
       "@components/*": ["./src/components/*"],
+      "@logic/*": ["./src/logic/*"],
+      "@config/*": ["./src/config/*"],
     }
   },
   "include": ["src"]

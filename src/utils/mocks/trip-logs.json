@@ -1,0 +1,24 @@
+{
+  "data": [
+    {
+      "id": "1",
+      "user": {
+        "name": "Desvío de ruta"
+      },
+      "created_at": 1731399965,
+      "comments": "Desvío de ruta por accidente en la vía principal",
+      "place" : {
+        "name": "Calle 13 con carrera 45",
+        "coords": {
+          "latitude": 17.166239659199654,
+          "longitude": -96.78676571099837
+        }
+      }
+    }
+  ],
+  "meta": {
+      "total_records": 1,
+      "current_page": 1,
+      "total_pages": 10
+  }
+}

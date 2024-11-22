@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
 import { usersApi } from "../../config/axiosConfig";
-import { Carrier } from "../../utils/interfaces/TripInterface";
+import { Carrier } from "../interfaces/TripInterface";
 
 const baseURL = '/carriers';
 

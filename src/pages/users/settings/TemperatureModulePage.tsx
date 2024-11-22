@@ -1,8 +1,9 @@
+import DocumentTitle from "@components/navigation/DocumentTitle";
 
-const TemperatureModulePage = () => {
+export const TemperatureModulePage = () => {
+  DocumentTitle('Configuración | Temperatura');
+
   return (
     <p>Configuración del modulo de temperatura</p>
   );
 }
-
-export default TemperatureModulePage;

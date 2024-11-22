@@ -4,13 +4,14 @@ import { Box, Tab, Tabs } from "@mui/material";
 import { useState } from "react";
 import TripsCollapsibleTable from "./components/TripsCollapsibleTable";
 import TripsFilterts from "./components/TripsFilterts";
-import NewTripModal from "./components/NewTripModal";
+import NewTripModal from "./components/form/NewTripModal";
 import useGetAllTrips from "../../../logic/hooks/trips/useGetAllTrips";
 import CustomTabPanel from "../../../components/display/CustomTabPanel";
 import CustomModal from "../../../components/display/CustomModal";
 import CustomPagination from "../../../components/display/CustomTablePagination";
 import PageContainer from "../../../containers/PageContainer";
 import Loader from "../../../components/display/Loader";
+import DocumentTitle from "@components/navigation/DocumentTitle";
 
 const TripsPage = () => {
   const [params, setParams] = useState({ page: 1, limit: 10, tab: 'ALL', search: '', status: '', client: '', carrier: '', place: '' });
@@ -36,6 +37,8 @@ const TripsPage = () => {
     const { search, ...rest } = values;
     setParams({ ...params, ...rest, page: 1 });
   }
+
+  DocumentTitle('Módulo de viajes');
 
   return (
     <PageContainer
@@ -80,9 +83,9 @@ const TripsPage = () => {
       <CustomModal
         open={newTripModal}
         handleClose={handleClose}
-        size="medium"
+        size="large"
       >
-        <NewTripModal />
+        <NewTripModal handleClose={handleClose} />
       </CustomModal>
     </PageContainer>
   );

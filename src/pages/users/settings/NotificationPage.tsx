@@ -1,8 +1,8 @@
+import DocumentTitle from "@components/navigation/DocumentTitle";
 
-const NotificationPage = () => {
+export const NotificationPage = () => {
+  DocumentTitle('Configuración | Notiiicaciones');
   return (
     <p>Configuración de las notificaciones</p>
   );
 }
-
-export default NotificationPage;

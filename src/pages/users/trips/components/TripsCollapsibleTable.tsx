@@ -17,7 +17,8 @@ import { Collapse } from '@mui/material';
 import moment from 'moment';
 import GetStatusLabel from './GetStatusLabel';
 import GetEtaStatus from './GetEtaStatus';
-import { TripData } from '../../../../utils/interfaces/TripInterface';
+import { TripData } from '@logic/interfaces/TripInterface';
+import TripsCollapsibleDetails from './TripsCollapsibleDetails';
 
 function createData(trip: TripData) {
   return {
@@ -25,10 +26,25 @@ function createData(trip: TripData) {
     status: trip.status?.name || 'Sin estatus',
     client: trip.client?.name,
     carrier: trip.carrier?.name,
-    origin: trip.places[0]?.places?.name,
+    origin: trip.places[0]?.name,
     destination: trip.places[trip.places.length - 1]?.places?.name,
     eta: trip.places[trip.places.length - 1]?.real_arrive_date,
     estimatedArrival: trip.places[trip.places.length - 1]?.estimate_arrive_date,
+    collapsibleDetails: {
+      id_trip: trip.id_trip,
+      data: trip,
+      places: trip.places,
+      description: trip.description,
+      tripType: trip.trip_type.name,
+      journeyType : trip.journey_type.name,
+      carrier: trip.carrier?.name,
+      unit: trip.units_setpoints[0]?.unit?.name,
+      drivers: trip.drivers.map((driver) => ({ name: driver?.name || '' })),
+      middlePoint: trip.middle_point,
+      waypoints : trip.waypoints,
+      routeName : trip.route.name,
+      wayBill: trip.way_bill || 'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf',
+    }
   };
 }
 
@@ -110,6 +126,7 @@ function Row(props: { row: ReturnType<typeof createData> }) {
   const { row } = props;
   const [open, setOpen] = React.useState(false);
 
+
   return (
     <React.Fragment>
       <TableRow sx={{ '& > *': { borderBottom: 'unset', paddingBlock: '4px' } }}>
@@ -133,12 +150,10 @@ function Row(props: { row: ReturnType<typeof createData> }) {
         }</TableCell>
       </TableRow>
       <TableRow>
-        <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={9}>
-          <Collapse in={open} timeout="auto" unmountOnExit>
-            <Box margin={1}>
-              <div>
-                <p>Detalles adicionales del viaje...</p>
-              </div>
+        <TableCell style={{ padding: 0 }} colSpan={9}>
+          <Collapse in={open} timeout="auto" unmountOnExit style={{ padding: 0, margin: 0, backgroundColor: '#F1F4FA' }}>
+            <Box margin={1} style={{ backgroundColor: 'red' }}>
+              <TripsCollapsibleDetails row={row.collapsibleDetails}  />
             </Box>
           </Collapse>
         </TableCell>

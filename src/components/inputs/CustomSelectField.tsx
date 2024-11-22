@@ -4,15 +4,16 @@ import { Autocomplete, TextField } from '@mui/material';
 interface CustomSelectFieldProps {
   label?: string;
   name: string;
-  value: string | number;
+  value: string | number | (string | number)[]; // Ajuste para manejar valores múltiples
   options: { value: string | number; label: string }[];
-  onChange: (value: string | number) => void;
+  onChange: (value: string | number | (string | number)[] | null) => void; // Ajuste para manejar valores múltiples
   error?: string;
   touched?: boolean;
   variant?: 'filled' | 'outlined' | 'standard';
   color?: 'primary' | 'secondary' | 'success' | 'error' | 'warning' | 'info';
   size?: 'small' | 'medium';
   formVariant?: boolean;
+  multiple?: boolean;
 }
 
 const CustomSelectField: React.FC<CustomSelectFieldProps> = ({
@@ -21,23 +22,23 @@ const CustomSelectField: React.FC<CustomSelectFieldProps> = ({
   options,
   onChange,
   error,
-  touched,
   variant = 'standard',
   color = 'primary',
   size = 'medium',
-  formVariant
+  formVariant,
+  multiple = false,
 }) => {
-  const isError = touched && !!error;
+  const isError = !!error;
 
   const style = {
     padding: 0,
     backgroundColor: 'transparent',
     '& .MuiInputBase-root': {
       backgroundColor: 'rgb(255, 255, 255)',
-      border: '1px solid rgba(0, 0, 0, 0.17)',
+      border: isError ? '1px solid red' : '1px solid rgba(0, 0, 0, 0.23)',
       borderRadius: '0.2rem',
       padding: '0px 1px',
-      height: '2.1rem',
+      height: multiple ? 'auto' : '2.25rem',
       '&:hover': {
         borderColor: 'rgba(0, 0, 0, 0.4)',
       },
@@ -52,29 +53,36 @@ const CustomSelectField: React.FC<CustomSelectFieldProps> = ({
     '& .MuiFormLabel-root': {
       display: 'none',
     },
-  }
+  };
 
   return (
     <div className='w-full'>
-      {
-        formVariant && (
-          <label className={`font-semibold`}>
-            {label}
-          </label>
-        )
-      }
+      {formVariant && (
+        <label className={`font-semibold ${isError ? 'text-red-500' : 'text-gray-700'}`}>
+          {label}
+        </label>
+      )}
       <Autocomplete
+        multiple={multiple}
         options={options}
         getOptionLabel={(option) => option.label}
+        limitTags={1}
         onChange={(_, newValue) => {
-          onChange(newValue ? newValue.value : '');
+          const selectedValue = multiple
+            ? newValue?.map((option) => option.value)
+            : newValue?.value ?? null;
+          onChange(selectedValue);
         }}
-        value={options.find((option) => option.value === value) || null}
+        value={
+          (multiple)
+            ? options?.filter((option) => (value as (string | number)[]).includes(option.value))
+            : options?.find((option) => option.value === value) || null
+        }
         renderInput={(params) => (
           <TextField
             {...params}
             error={isError}
-            helperText={isError ? error : undefined}
+            helperText={isError && error}
             variant={variant}
             size={size}
             label={label}

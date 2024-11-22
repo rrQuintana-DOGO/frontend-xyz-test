@@ -49,7 +49,7 @@ const StyledMenu = styled((props: MenuProps) => (
   },
 }));
 
-export const CustomMenuItem = ({children, icon}: {children: React.ReactNode, icon?: React.ReactNode}) => {
+export const CustomMenuItem = ({ children, icon }: { children: React.ReactNode, icon?: React.ReactNode }) => {
   return (
     <MenuItem>
       {icon}
@@ -65,7 +65,7 @@ interface CustomMenuButtonProps {
   variant?: 'contained' | 'outlined' | 'text';
   size?: 'small' | 'medium' | 'large';
   sx?: any;
-} 
+}
 
 export default function CustomMenuButton({ label, children, color, variant, size, sx }: CustomMenuButtonProps) {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);

@@ -1,8 +1,9 @@
+import DocumentTitle from "@components/navigation/DocumentTitle";
 
-const AlertsModulePage = () => {
-    return (
-      <p>Configuración del modulo de alertas</p>
-    );
-  }
-  
-  export default AlertsModulePage;
+export const AlertsModulePage = () => {
+  DocumentTitle('Configuración | Alertas');
+
+  return (
+    <p>Configuración del modulo de alertas</p>
+  );
+}

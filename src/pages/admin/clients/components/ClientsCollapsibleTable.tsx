@@ -14,8 +14,8 @@ import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import { visuallyHidden } from '@mui/utils';
 import { Collapse } from '@mui/material';
-import { Client, ClientResponse } from '@utils/interfaces/ClientInterface';
-import { CollectionScheme, PaymentSchemeStatus, SubscriptionStatus } from '@utils/interfaces/StripeInterface';
+import { Client, ClientResponse } from '@logic/interfaces/ClientInterface';
+import { CollectionScheme, PaymentSchemeStatus, SubscriptionStatus } from '@logic/interfaces/StripeInterface';
 
 function createData(client: Client) {
   return {

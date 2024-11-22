@@ -2,7 +2,7 @@ import CustomBreadcrumbs from "@components/navigation/CustomBreadcrumbs"
 import Layout from "./Layout"
 import { CustomButton } from "@components/inputs/CustomButton";
 import Title from "@components/display/Title";
-import { PageContainerProps } from "@utils/interfaces/ContainerInterface";
+import { PageContainerProps } from "@logic/interfaces/ContainerInterface";
 
 const PageContainer = ({ title, rightButton, isLoading = false, mainRoute, primaryRoute, secondaryRoute, children }: PageContainerProps) => {
   return (

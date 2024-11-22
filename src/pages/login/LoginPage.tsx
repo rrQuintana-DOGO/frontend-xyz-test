@@ -12,6 +12,7 @@ import { useGoogleLogin } from '@react-oauth/google';
 import { useFormik } from 'formik';
 import ErrorMessage from './components/ErrorMessage';
 import Title from '../../components/display/Title';
+import DocumentTitle from '@components/navigation/DocumentTitle';
 import { Switch } from '@mui/material';
 import { useSelector } from 'react-redux';
 import { RootState } from 'src/logic/redux/store';
@@ -46,6 +47,8 @@ const LoginPage: React.FC = () => {
     validationSchema: loginValidationSchema,
     onSubmit: handleLogin,
   });
+
+  DocumentTitle('Inicia sesión');
 
   return (
     <div className="flex flex-1 min-h-screen w-full">

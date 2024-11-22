@@ -6,14 +6,17 @@ import ClientsCollapsibleTable from "./components/ClientsCollapsibleTable"
 import Loader from "../../../components/display/Loader"
 import { useGetAllClients_ADMON } from "../../../logic/hooks/clients/useGetAllClients"
 import NewClientModal from "./components/NewClientModal"
+import DocumentTitle from "@components/navigation/DocumentTitle"
 
 const ClientsPage = () => {
-  const [params, _setParams] = useState({ page: 1, limit: 10 });
+  const [params, setParams] = useState({ page: 1, limit: 10 });
   const { data: clients, isLoading, error } = useGetAllClients_ADMON(params);
 
   const [newClientModal, setNewClientModal] = useState(false);
   const handleOpen = () => setNewClientModal(true);
   const handleClose = () => setNewClientModal(false);
+
+  DocumentTitle('Administración de clientes');
 
   return (
     <PageContainer

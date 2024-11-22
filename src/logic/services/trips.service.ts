@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import { TripDetails } from "@utils/transforms/parceNewTrip";
 import { usersApi } from "../../config/axiosConfig";
 
 const baseURL = '/trips';
@@ -25,9 +26,24 @@ const tripsService = {
     }
   },
 
-  async createTrip(tripData: Partial<Trip>): Promise<Trip> {
+  getTripsLogs: async (id:string, query: Record<string, any>) => {
     try {
-      const response = await usersApi.post<Trip>(baseURL, tripData);
+      const params = new URLSearchParams(query).toString();
+      const response = await usersApi.get(`/tripLogs/trip/${id}?${params}`);
+
+      return response.data
+    } catch (error: any) {
+      if (error.response) {
+        throw new Error(error.response.data.message);
+      }
+
+      throw error;
+    }
+  },
+
+  async createTrip(tripData: Partial<TripDetails>): Promise<TripDetails> {
+    try {
+      const response = await usersApi.post<TripDetails>(baseURL, tripData);
       return response.data;
     } catch (error) {
       console.error('Error creating trip:', error);

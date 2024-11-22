@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
 import { usersApi } from "../../config/axiosConfig";
-import { Place } from "../../utils/interfaces/TripInterface";
+import { Place } from "../interfaces/TripInterface";
 
 const baseURL = '/places';
 

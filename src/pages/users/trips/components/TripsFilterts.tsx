@@ -43,28 +43,6 @@ const TripsFilters = ({ params, handleSearch, handleFilter }: any) => {
     )
   }
 
-  if (false) {
-    return (
-      <div className="flex flex-row flex-1 py-3 space-x-2 w-1/2 ms-auto">
-        <div className="w-full bg-white border border-zinc-200 px-3 py-1 rounded-md flex flex-row space-x-3 group items-center">
-          <span className="text-black">
-            <i className="fa-solid fa-magnifying-glass text-zinc-400 text-sm" />
-          </span>
-          <input
-            type="text"
-            name="search"
-            value={formik.values.search}
-            onChange={(e) => handleSearch(e.target.value)}
-            onBlur={formik.handleBlur}
-            className="bg-transparent w-full text-black focus:outline-none text-sm"
-            placeholder='Buscar'
-          />
-        </div>
-        <CustomButton label="Filtros" color="secondary" variant="outlined" disabled />
-      </div>
-    )
-  }
-
   return (
     <form onSubmit={formik.handleSubmit} className="flex flex-row flex-1 py-3 space-x-2 w-1/2 ms-auto">
       <div className="w-full bg-white border border-zinc-200 px-3 py-1 rounded-md flex flex-row space-x-3 group items-center">

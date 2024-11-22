@@ -5,7 +5,7 @@ export interface RouteState {
 }
 
 const initialRouteState: RouteState = {
-  name: 'Perfil',
+  name: '',
 }
 
 const routeSlice = createSlice({

@@ -1,8 +1,9 @@
+import DocumentTitle from "@components/navigation/DocumentTitle";
 
-const IntegrationsPage = () => {
-    return (
-      <p>Configuración de las integraciones</p>
-    );
-  }
-  
-  export default IntegrationsPage;
+export const IntegrationsPage = () => {
+  DocumentTitle('Configuración | Integraciones');
+
+  return (
+    <p>Configuración de las integraciones</p>
+  );
+}
