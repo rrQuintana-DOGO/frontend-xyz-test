@@ -9,8 +9,7 @@ import NewClientModal from "./components/NewClientModal"
 import DocumentTitle from "@components/navigation/DocumentTitle"
 
 const ClientsPage = () => {
-  const [params, setParams] = useState({ page: 1, limit: 10 });
-  const { data: clients, isLoading, error } = useGetAllClients_ADMON(params);
+  const { data: clients, isLoading, error } = useGetAllClients_ADMON({ page: 1, limit: 10 });
 
   const [newClientModal, setNewClientModal] = useState(false);
   const handleOpen = () => setNewClientModal(true);

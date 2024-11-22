@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import timeZonesService from '@logic/services/time_zones.service';
 import { useQuery } from '@tanstack/react-query';
-import timeZonesService from '../../services/trips_types.service';
 
 interface TimeZonesQuery {
   [key: string]: any;
