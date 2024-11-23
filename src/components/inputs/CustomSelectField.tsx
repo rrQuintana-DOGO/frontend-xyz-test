@@ -68,9 +68,9 @@ const CustomSelectField: React.FC<CustomSelectFieldProps> = ({
         getOptionLabel={(option) => option.label}
         limitTags={1}
         onChange={(_, newValue) => {
-            const selectedValue: string | number | (string | number)[] | null = multiple
-            ? (newValue as { value: string | number }[])?.map((option) => option.value)
-            : (newValue as { value: string | number })?.value ?? null;
+          const selectedValue = multiple
+            ? (newValue as { value: string | number; label: string }[])?.map((option) => option.value)
+            : !Array.isArray(newValue) ? newValue?.value ?? null : null;
           onChange(selectedValue);
         }}
         value={

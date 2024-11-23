@@ -25,8 +25,11 @@ export default {
     },
     extend: {
       colors: {
-        blueDogo: '#0071C2'
-      }
+        blueDogo: '#0071C2',
+        pinkDogo: '#C4407C',
+        greenDogo: '#00BFB3',
+      },
+
     },
   },
   plugins: [],

@@ -41,7 +41,12 @@ function createData(trip: TripData) {
       unit: trip.units_setpoints[0]?.unit?.name,
       drivers: trip.drivers.map((driver) => ({ name: driver?.name || '' })),
       middlePoint: trip.middle_point,
-      waypoints : trip.waypoints,
+      waypoints: [
+        { latitude: 25.641197440014864, longitude: -100.28304077467403 },
+        { latitude: 27.695175725176355, longitude: -99.74796594754365 },
+        { latitude: 27.952970905838416, longitude: -99.38001786739679 },
+        { latitude: 29.519651885880343, longitude: -98.48429997116423 },
+      ],
       routeName : trip.route.name,
       wayBill: trip.way_bill || 'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf',
     }

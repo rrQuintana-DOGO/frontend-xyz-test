@@ -4,10 +4,11 @@ import { setUser } from './logic/redux/slices/authSlice';
 import Router from './containers/navigation/Router';
 import useSocketConnection from '@logic/hooks/socket/useSocketConnection';
 import useSocketSubscribe from '@logic/hooks/socket/useSocketSubscribe';
+import { envs } from '@config/envs';
 
 function App() {
   const dispatch = useDispatch();
-  const { socket } = useSocketConnection('http://localhost:8001');
+  const { socket } = useSocketConnection(envs.socketUrl);
 
   const { subscribed, message } = useSocketSubscribe(socket, 'idFlespi');
 

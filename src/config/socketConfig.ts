@@ -1,12 +1,15 @@
 import { useEffect } from 'react';
 import io from 'socket.io-client';
+import { envs } from './envs';
 
 const WebSocketComponent = () => {
+
   useEffect(() => {
-    const socket = io('ws://localhost:8001', { transports: ['websocket'] });
+    const socket = io(envs.socketUrl, { transports: ['websocket'] });
 
     socket.on('connect', () => {
       console.log('Conectado al servidor WebSocket');
+
       // Enviar el mensaje de suscripción al servidor
       socket.emit('subscribe', { topic: 'example-topic' });
     });

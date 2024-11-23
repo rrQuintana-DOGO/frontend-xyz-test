@@ -2,6 +2,7 @@ import ConfigPage from "@pages/users/settings/ConfigPage"
 import ClientsPage from "@pages/admin/clients/ClientsPage"
 import AdminHomePage from "@pages/admin/home/AdminHomePage"
 import TripsPage from "@pages/users/trips/TripsPage"
+import AlertsPage from "@pages/users/alerts/AlertsPage";
 
 export const userRoutes = [
   {
@@ -11,12 +12,19 @@ export const userRoutes = [
     show: true,
   },
   {
+    name: 'Módulo de alertas',
+    route: 'alerts',
+    component: AlertsPage,
+    show: true,
+  },
+  {
     name: 'Configuración',
     route: 'configuracion/*',
     component: ConfigPage,
     show: true,
   }
 ]
+
 export const adminRoutes = [
   {
     name: 'Módulo admon',
