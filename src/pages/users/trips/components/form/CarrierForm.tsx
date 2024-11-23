@@ -118,7 +118,7 @@ const CarrierForm: React.FC<CarrierFormProps> = ({ formik, carriers, units, driv
                 value={formik.values.drivers[index] || ''}
                 options={drivers.data
                   .map((driver) => ({ value: driver.id_driver, label: driver.name }))}
-                error={formik.errors.drivers?.[index] ? (formik.errors.drivers as any)?.[index] : ''}
+                error={formik.errors.drivers?.[index] ? formik.errors.drivers?.[index] : undefined}
                 formVariant
               />
             </div>

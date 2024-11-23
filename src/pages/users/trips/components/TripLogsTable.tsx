@@ -13,6 +13,8 @@ import { visuallyHidden } from '@mui/utils';
 import { TripLog } from '@logic/interfaces/TripLogInterface';
 import { CustomButton } from '@components/inputs/CustomButton';
 import useGetTripsLogs from '@logic/hooks/trips/useGetTripsLogs';
+import CustomPagination from '@components/display/CustomTablePagination';
+import { Divider } from '@mui/material';
 
 function createData(tripLog: TripLog) {
   return {
@@ -129,12 +131,14 @@ function Row(props: { row: ReturnType<typeof createData> }) {
   );
 }
 
-const TripLogsTable = ({ trip }: { trip: string }) => {
+const TripLogsTable = ({ trip, initialLimit, showPagination = false }: { trip: string, initialLimit: number, showPagination?: boolean }) => {
 
   const [order, setOrder] = React.useState<'asc' | 'desc'>('asc');
   const [orderBy, setOrderBy] = React.useState<keyof TripLog>('id');
 
-  const { data: logs } = useGetTripsLogs(trip, { page: 1, limit: 4 })
+  const [params, setParams] = React.useState({ page: 1, limit: initialLimit });
+
+  const { data: logs } = useGetTripsLogs(trip, params);
 
   if (!logs?.data) {
     return
@@ -166,6 +170,20 @@ const TripLogsTable = ({ trip }: { trip: string }) => {
                 ))}
             </TableBody>
           </Table>
+          {showPagination && (
+            <>
+              <CustomPagination
+                endPagination={true}
+                count={logs.meta.total_pages}
+                page={params.page}
+                rowsPerPage={params.limit}
+                onPageChange={(_event, value) => setParams({ ...params, page: value })}
+                onRowsPerPageChange={(event) => setParams({ ...params, page: 1, limit: Number(event.target.value) })}
+              />
+              <Divider orientation="horizontal" />
+            </>
+          )
+          }
         </TableContainer>
       </Paper>
     </Box>

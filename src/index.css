@@ -50,7 +50,6 @@ p {
 
 .leaflet-container {
   min-height: 420px;
-  height: 100%;
   width: '100%';
 }
 

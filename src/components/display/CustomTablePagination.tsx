@@ -5,6 +5,7 @@ import { MenuItem, Select, SelectChangeEvent } from '@mui/material';
 interface CustomPaginationProps {
   count: number;
   page: number;
+  endPagination?: boolean;
   onPageChange: (event: React.ChangeEvent<unknown>, value: number) => void;
   rowsPerPage: number;
   onRowsPerPageChange: (event: SelectChangeEvent<number>) => void;
@@ -16,6 +17,7 @@ const CustomPagination: React.FC<CustomPaginationProps> = ({
   onPageChange,
   rowsPerPage,
   onRowsPerPageChange,
+  endPagination = false,
 }) => {
   return (
     <div className='flex flex-row justify-between items-center bg-white py-3 px-5'>
@@ -57,7 +59,9 @@ const CustomPagination: React.FC<CustomPaginationProps> = ({
         color="primary"
         shape="rounded"
       />
-      <div className="w-1/5" />
+      {!endPagination &&
+        <div className="w-1/5" />
+      }
     </div>
   );
 };

@@ -1,10 +1,9 @@
 import { useEffect } from 'react';
 import io from 'socket.io-client';
-import { envs } from './envs';
 
 const WebSocketComponent = () => {
   useEffect(() => {
-    const socket = io(envs.socketUrl, { transports: ['websocket'] });
+    const socket = io('ws://localhost:8001', { transports: ['websocket'] });
 
     socket.on('connect', () => {
       console.log('Conectado al servidor WebSocket');

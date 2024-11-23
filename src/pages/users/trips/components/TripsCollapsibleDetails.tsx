@@ -132,7 +132,7 @@ const TripsCollapsibleDetails = ({ row }: { row: RowDetails }) => {
               gap={1}
               click={() => handleTripLogOpen()}
             >
-              <TripLogsTable trip={row.id_trip} />
+              <TripLogsTable trip={row.id_trip} initialLimit={4} />
             </SectionTripDetails>
           </div>
         </div>
@@ -221,6 +221,7 @@ const TripsCollapsibleDetails = ({ row }: { row: RowDetails }) => {
         {/* Modal para mostrar mapa */}
         <TripLogModal
           open={newTripLogModal}
+          id_trip={row.id_trip}
           handleClose={handleTripLogClose}
         />
       </div>

@@ -27,7 +27,7 @@ function createData(trip: TripData) {
     client: trip.client?.name,
     carrier: trip.carrier?.name,
     origin: trip.places[0]?.name,
-    destination: trip.places[trip.places.length - 1]?.places?.name,
+    destination: trip.places[trip.places.length - 1]?.name,
     eta: trip.places[trip.places.length - 1]?.real_arrive_date,
     estimatedArrival: trip.places[trip.places.length - 1]?.estimate_arrive_date,
     collapsibleDetails: {

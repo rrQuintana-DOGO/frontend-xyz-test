@@ -1,5 +1,4 @@
 import { CustomButton } from "@components/inputs/CustomButton";
-import cn from 'classnames';
 
 const sectionTripDetails = (
   {
@@ -17,10 +16,11 @@ const sectionTripDetails = (
     buttonLabel: string,
     click?: () => void
   }) => {
-  const gridClasses = cn({
-    [`grid-cols-${cols}`]: cols,
-    [`gap-${gap}`]: gap
-  });
+  const gridStyles = {
+    display: 'grid',
+    gridTemplateColumns: `repeat(${cols}, minmax(0, 1fr))`,
+    gap: `${gap * 0.25}rem`
+  };
   return (
     <div className="flex-1 space-y-2">
       <div className="flex justify-between">
@@ -35,7 +35,7 @@ const sectionTripDetails = (
           }}
         />
       </div>
-      <div className={`grid ${gridClasses}`}>
+      <div style={gridStyles}>
         {children}
       </div>
     </div>

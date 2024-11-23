@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import React from 'react';
 import { Autocomplete, TextField } from '@mui/material';
 
@@ -69,9 +68,9 @@ const CustomSelectField: React.FC<CustomSelectFieldProps> = ({
         getOptionLabel={(option) => option.label}
         limitTags={1}
         onChange={(_, newValue) => {
-          const selectedValue = multiple
-            ? Array.isArray(newValue) ? newValue.map((option: { value: any; }) => option.value) : []
-            : !Array.isArray(newValue) ? newValue?.value ?? null : null;
+            const selectedValue: string | number | (string | number)[] | null = multiple
+            ? (newValue as { value: string | number }[])?.map((option) => option.value)
+            : (newValue as { value: string | number })?.value ?? null;
           onChange(selectedValue);
         }}
         value={
